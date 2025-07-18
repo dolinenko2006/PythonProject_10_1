@@ -9,14 +9,14 @@ def mask_account_card(arg: Union[str] = "Visa 0000000000000000") -> str:
     """
     a = str(arg)
     str_arg_ = a.split(" ")  # ['Счет', '73654108430135874305']
-    str_number = str_arg_[-1]
-    str_words = str_arg_[0:-1]
+    number = str_arg_[-1]
+    words = str_arg_[0:-1]
     if str_arg_[0] == "Счет" or str_arg_[0] == "Счёт":
-        return f"Счет **{str_number[-4:]}"
+        return f"Счет **{number[-4:]}"
     else:
-        str_number_total = str_number[0:4] + " " + str_number[5:7] + "**" + " " + "****" + " " + str_number[-4:]
-        str_words_total = " ".join(str_words)
-        return f"{str_words_total} {str_number_total}"
+        number_total = number[0:4] + " " + number[5:7] + "**" + " " + "****" + " " + number[-4:]
+        words_total = " ".join(words)
+        return f"{words_total} {number_total}"
 
 
 def get_date(arg: Union[str] = "0000-00-00T00:00:00.00000") -> str:
@@ -27,6 +27,5 @@ def get_date(arg: Union[str] = "0000-00-00T00:00:00.00000") -> str:
     """
     arg = str(arg)
     date = arg[:10]  # 2024-03-11
-    str_date = date.split("-")  # -> ['2024', '03', '11']
-    year, month, day = tuple(str_date)  # -> ('2024', '03', '11')
+    year, month, day = tuple(date.split("-"))  # -> ('2024', '03', '11')
     return f"{day}.{month}.{year}"
