@@ -1,5 +1,3 @@
-from typing import Union
-
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -15,9 +13,9 @@ def mask_account_card(attribute: str = "Visa 0000000000000000") -> str:
     words = " ".join(list_attribute[0:-1])
 
     if list_attribute[0] == "Счет" or list_attribute[0] == "Счёт":
-        return f'{words} {get_mask_account(number)}'
+        return f"{words} {get_mask_account(number)}"
     else:
-        return f'{words} {get_mask_card_number(number)}'
+        return f"{words} {get_mask_card_number(number)}"
 
 
 def get_date(date_: str = "0000-00-00T00:00:00.00000") -> str:
