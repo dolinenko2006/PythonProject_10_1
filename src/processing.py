@@ -1,22 +1,28 @@
 from typing import Optional
 
 
-def filter_by_state(list_of_dict:list, key:str = 'EXECUTED') -> list:
+def filter_by_state(list_of_dict:list, value_:str = 'EXECUTED') -> list:
     """принимает список словарей и опционально значение для ключа state
     (по умолчанию 'EXECUTED')"""
-    new_list_of_dict = []
+    new_list_of_dict = [] # список словарей все ключи 'state' имеют значение value_
     for i in list_of_dict:
-        if i['state'] == key:
+        if i['state'] == value_:
             new_list_of_dict.append(i)
 
     return new_list_of_dict
 
 
-def sort_by_date(a:list, b:Optional[bool] = True) -> list:
+def sort_by_date(list_of_dict:list, range:bool = True) -> list:
     """принимает список словарей и необязательный параметр.
     Функция должна возвращать новый список, отсортированный по дате (date)."""
-    pass
+    for i in list_of_dict:
+        number = "".join(i['date'][:10].split("-")) # '2018-06-30T02:08:58.425572' -> '20180630'
+        number = int(number) # '20180630' -> число 20180630
+        i['date_int'] = number # помещаем в словарь ключ ('date_int') = значение (число 20180630)
 
-a = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}, {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}, {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}, {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
+    sorted_list = sorted(list_of_dict, key=lambda i: i["date_int"],reverse=range)
 
-print(filter_by_state(a,))
+    for i in sorted_list:
+        del i["date_int"]
+
+    return sorted_list
