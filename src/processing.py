@@ -1,5 +1,3 @@
-
-
 def filter_by_state(list_of_dict: list, value_: str = "EXECUTED") -> list:
     """принимает список словарей и опционально значение для ключа state
     (по умолчанию 'EXECUTED')"""
