@@ -4,7 +4,12 @@ import pytest
 
 def test_get_mask_card_number():
     assert get_mask_card_number(1111111111111111) == '1111 11** **** 1111'
-
+    assert get_mask_card_number(55555) == 'Номер карты состоит из 16 цифр, а Вы ввели 5'
+    assert get_mask_card_number(1234567891011121314) == 'Номер карты состоит из 16 цифр, а Вы ввели 19'
+    assert get_mask_card_number('123abc') == 'Номер карты состоит из 16 цифр, а Вы ввели 6'
 
 def test_get_mask_account():
     assert get_mask_account(22222222222222222222) == '**2222'
+    assert get_mask_account(222222) == 'Номер счета состоит из 20 цифр, а Вы ввели 6'
+    assert get_mask_account(333333333333333333333333) == 'Номер счета состоит из 20 цифр, а Вы ввели 24'
+    assert get_mask_account('123ab') == 'Номер счета состоит из 20 цифр, а Вы ввели 5'
