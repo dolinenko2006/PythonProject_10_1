@@ -1,7 +1,7 @@
 from typing import Union
 
 
-def get_mask_card_number(arg: Union[str, int] = '') -> str:
+def get_mask_card_number(arg: Union[str, int] = "") -> str:
     """принимает на вход номер карты и возвращает ее маску"""
 
     str_number = str(arg)
@@ -13,11 +13,11 @@ def get_mask_card_number(arg: Union[str, int] = '') -> str:
     return result
 
 
-def get_mask_account(arg: Union[str, int] = '') -> str:
+def get_mask_account(arg: Union[str, int] = "") -> str:
     """принимает на вход номер счета и возвращает его маску"""
 
     str_number = str(arg)
     if len(str_number) == 20 and str_number.isdigit():
         return f"**{str_number[-4:]}"
 
-    return "Проверьте правильность ввода данных" # f"Номер счета состоит из 20 цифр, а Вы ввели {len(str_number)}"
+    return "Проверьте правильность ввода данных"  # f"Номер счета состоит из 20 цифр, а Вы ввели {len(str_number)}"
