@@ -34,3 +34,7 @@ def test_get_date_1(numbers: str) -> None:  # используем данные 
 def test_get_date(empty_word: str) -> None:  # используем данные из фикстур
     assert get_date() == empty_word
     assert get_date("rewgfdg") == empty_word
+
+
+def test_get_date_invalid() -> None:
+    assert get_date("abcd-ef-gh") == "Проверьте правильность ввода данных"
