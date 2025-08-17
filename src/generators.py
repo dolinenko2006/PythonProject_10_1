@@ -1,4 +1,6 @@
 import ast
+import random
+
 
 # with open("../transactions.txt", "r", encoding="utf-8") as f:
 #     data = f.read()
@@ -93,10 +95,21 @@ def filter_by_currency(my_list,code='USD'):
             yield i
 
 
-def transaction_descriptions():
+def transaction_descriptions(my_list):
     # принимает список словарей с транзакциями и возвращает описание каждой операции по очереди
-    pass
+    for i in my_list:
+        yield i['description']
 
-def card_number_generator():
+
+def card_number_generator(start=0, stop=9999999999999999):
     # выдает номера банковских карт в формате XXXX XXXX XXXX XXXX
-    pass
+    random_numbers = set()
+    while True:
+        number = random.randint(start,stop)
+        if number in random_numbers:  # проверяем чтобы не было повторений номеров карт
+            continue
+
+        random_numbers.add(number)
+        str_zero_num = "0" * (16 - len(str(number))) + str(number)
+        total_str = str_zero_num[:4] + " " + str_zero_num[4:8] + " " + str_zero_num[8:12] + " " + str_zero_num[12:]
+        yield total_str
